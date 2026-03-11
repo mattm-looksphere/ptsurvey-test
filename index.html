@@ -1,0 +1,1852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <title>[TEST] PT Campaign Research · LookSphere</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital@1&family=Inter:wght@300;400;500&family=Raleway:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --black: #0F1211;
+      --deep-brown: #282828;
+      --gold: #D7B380;
+      --brown-base: #563D1E;
+      --gray: #454545;
+      --light-gray: #9e9b9b;
+      --white: #ffffff;
+      --bg: #f5f3ef;
+      --border: #e5e0d8;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--black);
+      min-height: 100vh;
+    }
+
+    /* ── TOP BAR ── */
+    #top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      height: 56px;
+      border-bottom: 1px solid #1e1e1e;
+    }
+
+    #top-bar .brand {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 200;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      font-size: 1.1rem;
+      text-transform: uppercase;
+    }
+
+    #top-bar .progress-counter {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 0.8rem;
+      color: var(--light-gray);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── PROGRESS BAR ── */
+    #progress-track {
+      height: 3px;
+      background-color: #1e1e1e;
+      width: 100%;
+      position: sticky;
+      top: 56px;
+      z-index: 99;
+    }
+
+    #progress-fill {
+      height: 100%;
+      background-color: var(--gold);
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      background-color: var(--black);
+      padding: 52px 28px 48px;
+      text-align: center;
+      border-bottom: 1px solid #1e1e1e;
+    }
+
+    #hero h1 {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 300;
+      font-size: clamp(1.4rem, 4vw, 2.1rem);
+      color: var(--white);
+      letter-spacing: 0.06em;
+      margin-bottom: 14px;
+    }
+
+    #hero p {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: var(--gold);
+      max-width: 640px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ── MAIN CONTENT ── */
+    #main {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 36px 20px 80px;
+    }
+
+    /* ── DEFINITIONS BOX ── */
+    .definitions-box {
+      background-color: var(--deep-brown);
+      border-left: 3px solid var(--gold);
+      border-radius: 6px;
+      padding: 28px 28px 24px;
+      margin-bottom: 40px;
+    }
+
+    .definitions-box h3 {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 500;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+
+    .definitions-box dl {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .definitions-box dt {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 0.82rem;
+      color: var(--gold);
+      margin-bottom: 2px;
+    }
+
+    .definitions-box dd {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.65;
+      margin-left: 0;
+    }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      background-color: var(--deep-brown);
+      padding: 12px 20px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .section-label .section-title {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 300;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .section-label .section-desc {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.55);
+      font-style: italic;
+    }
+
+    /* ── QUESTION CARD ── */
+    .question-card {
+      background-color: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 28px 28px 24px;
+      margin-bottom: 18px;
+      transition: box-shadow 0.2s ease;
+    }
+
+    .question-card:hover {
+      box-shadow: 0 2px 12px rgba(15,18,17,0.06);
+    }
+
+    .question-number {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 500;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .question-text {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 0.96rem;
+      color: var(--black);
+      line-height: 1.55;
+      margin-bottom: 6px;
+    }
+
+    .question-optional {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 0.72rem;
+      color: var(--light-gray);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .question-helper {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 0.8rem;
+      color: var(--gray);
+      line-height: 1.5;
+      margin-bottom: 18px;
+      font-style: italic;
+    }
+
+    /* ── RADIO / CHECKBOX OPTIONS ── */
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      margin-top: 16px;
+    }
+
+    .option-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 16px;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      cursor: pointer;
+      transition: border-color 0.15s, background-color 0.15s;
+      user-select: none;
+    }
+
+    .option-item:hover {
+      border-color: var(--gold);
+      background-color: #faf8f4;
+    }
+
+    .option-item.selected {
+      background-color: var(--black);
+      border-color: var(--black);
+    }
+
+    .option-item.selected .option-label {
+      color: var(--gold);
+    }
+
+    .option-item.selected .option-indicator {
+      background-color: var(--gold);
+      border-color: var(--gold);
+    }
+
+    .option-item.selected .option-indicator::after {
+      opacity: 1;
+    }
+
+    .option-indicator {
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid #ccc8c0;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+      position: relative;
+    }
+
+    .option-indicator.checkbox-indicator {
+      border-radius: 3px;
+    }
+
+    .option-indicator::after {
+      content: '';
+      width: 7px;
+      height: 7px;
+      background-color: var(--black);
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+
+    .option-indicator.checkbox-indicator::after {
+      content: '';
+      width: 10px;
+      height: 7px;
+      background: none;
+      border-radius: 0;
+      border-left: 2px solid var(--black);
+      border-bottom: 2px solid var(--black);
+      transform: rotate(-45deg) translate(1px, -1px);
+      opacity: 0;
+    }
+
+    .option-label {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 0.88rem;
+      color: var(--black);
+      line-height: 1.4;
+      transition: color 0.15s;
+    }
+
+    /* Hidden actual inputs */
+    .option-item input[type="radio"],
+    .option-item input[type="checkbox"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* ── Q15 GRID ── */
+    .grid-question {
+      margin-top: 16px;
+    }
+
+    .grid-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .grid-table th {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 0.72rem;
+      color: var(--gray);
+      padding: 8px 6px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    .grid-table th:first-child {
+      text-align: left;
+      min-width: 120px;
+    }
+
+    .grid-table td {
+      padding: 10px 6px;
+      text-align: center;
+      border-bottom: 1px solid #f0ece5;
+    }
+
+    .grid-table td:first-child {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 0.83rem;
+      color: var(--black);
+      text-align: left;
+      padding-left: 0;
+    }
+
+    .grid-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .grid-radio {
+      width: 20px;
+      height: 20px;
+      border: 1.5px solid #ccc8c0;
+      border-radius: 50%;
+      display: inline-block;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.15s;
+      vertical-align: middle;
+    }
+
+    .grid-radio.selected {
+      background-color: var(--black);
+      border-color: var(--gold);
+    }
+
+    .grid-radio.selected::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 7px;
+      height: 7px;
+      background-color: var(--gold);
+      border-radius: 50%;
+    }
+
+    /* Responsive grid */
+    @media (max-width: 560px) {
+      .grid-table {
+        display: none;
+      }
+
+      .grid-mobile {
+        display: block;
+      }
+
+      .grid-mobile-row {
+        margin-bottom: 20px;
+      }
+
+      .grid-mobile-row .grid-row-label {
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        font-size: 0.85rem;
+        color: var(--black);
+        margin-bottom: 10px;
+      }
+
+      .grid-mobile-options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+      }
+
+      .grid-mobile-option {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 7px 12px;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.78rem;
+        color: var(--black);
+        transition: all 0.15s;
+        user-select: none;
+      }
+
+      .grid-mobile-option.selected {
+        background-color: var(--black);
+        border-color: var(--black);
+        color: var(--gold);
+      }
+    }
+
+    @media (min-width: 561px) {
+      .grid-mobile {
+        display: none;
+      }
+    }
+
+    /* ── TEXTAREA ── */
+    .survey-textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 0.88rem;
+      color: var(--black);
+      background-color: #faf9f7;
+      resize: vertical;
+      margin-top: 16px;
+      outline: none;
+      transition: border-color 0.15s;
+      line-height: 1.6;
+    }
+
+    .survey-textarea:focus {
+      border-color: var(--gold);
+      background-color: var(--white);
+    }
+
+    .survey-textarea::placeholder {
+      color: var(--light-gray);
+    }
+
+    /* ── SECTION WRAPPER (for conditional show/hide) ── */
+    .conditional-section {
+      transition: opacity 0.3s ease;
+    }
+
+    .conditional-section.hidden {
+      display: none;
+    }
+
+    /* ── SUBMIT BUTTON ── */
+    #submit-btn {
+      width: 100%;
+      padding: 17px 28px;
+      background-color: var(--gold);
+      color: var(--black);
+      border: none;
+      border-radius: 6px;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 32px;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+    }
+
+    #submit-btn:hover {
+      background-color: #c9a46e;
+    }
+
+    #submit-btn:active {
+      transform: scale(0.99);
+    }
+
+    /* ── FOOTER ── */
+    #survey-footer {
+      margin-top: 36px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    #survey-footer p {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--light-gray);
+      line-height: 1.7;
+    }
+
+    #survey-footer .team-sig {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 300;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: var(--light-gray);
+      margin-top: 10px;
+    }
+
+    /* ── THANK YOU ── */
+    #thank-you {
+      display: none;
+      max-width: 600px;
+      margin: 80px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    #thank-you h2 {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 200;
+      font-size: clamp(2rem, 6vw, 3rem);
+      color: var(--black);
+      letter-spacing: 0.1em;
+      margin-bottom: 24px;
+    }
+
+    #thank-you p {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 0.95rem;
+      color: var(--gray);
+      line-height: 1.75;
+      margin-bottom: 28px;
+    }
+
+    #thank-you .ty-sig {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--gold);
+    }
+
+    #thank-you .ty-divider {
+      width: 48px;
+      height: 1px;
+      background-color: var(--gold);
+      margin: 28px auto;
+    }
+
+    /* ── SECTION SPACER ── */
+    .section-spacer {
+      height: 16px;
+    }
+
+    /* ── MOBILE RESPONSIVE ── */
+    @media (max-width: 600px) {
+      #top-bar {
+        padding: 0 16px;
+        height: 50px;
+      }
+
+      #top-bar .brand {
+        font-size: 0.9rem;
+        letter-spacing: 0.22em;
+      }
+
+      #progress-track {
+        top: 50px;
+      }
+
+      #hero {
+        padding: 36px 20px 32px;
+      }
+
+      #main {
+        padding: 24px 14px 60px;
+      }
+
+      .question-card {
+        padding: 22px 18px 18px;
+      }
+
+      .definitions-box {
+        padding: 22px 18px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div id="top-bar">
+    <div class="brand">LookSphere</div>
+    <div class="progress-counter" id="progress-counter">0 of 20</div>
+  </div>
+
+  <!-- PROGRESS BAR -->
+  <div id="progress-track">
+    <div id="progress-fill"></div>
+  </div>
+
+  <!-- HERO -->
+  <div id="hero">
+    <h1>Market Research — PT Campaign Economics</h1>
+    <p>Share what you know — no calculations needed. Your answers directly shape how LookSphere models campaign ROI and builds tools for facilities like yours.</p>
+  </div>
+
+  <!-- MAIN SURVEY CONTENT -->
+  <div id="main">
+    <div id="survey-form">
+
+      <!-- QUICK DEFINITIONS -->
+      <div class="definitions-box">
+        <h3>Quick Definitions</h3>
+        <dl>
+          <div>
+            <dt>Campaign</dt>
+            <dd>One promo push or sequence sent to a defined group of members via any channel.</dd>
+          </div>
+          <div>
+            <dt>Outbound Marketing</dt>
+            <dd>Proactive promotions or messages designed to generate PT demand — not just conversations when members walk up and ask.</dd>
+          </div>
+          <div>
+            <dt>First PT Session</dt>
+            <dd>The paid or free first personal training session used to start a new member on PT.</dd>
+          </div>
+          <div>
+            <dt>Found First-Session Revenue</dt>
+            <dd>In a normal month without a campaign, maybe 3 members sign up for their first PT session. You run a campaign and 8 members sign up. The 5 extra sign-ups? That's your Found First-Session Revenue — the money your campaign actually created.</dd>
+          </div>
+          <div>
+            <dt>Package Revenue</dt>
+            <dd>Training package dollars collected from members who bought a package after a campaign-driven first PT session (typically within 30 days).</dd>
+          </div>
+        </dl>
+      </div>
+
+      <!-- ════════════════════════════════════════ -->
+      <!-- SECTION 1 — Facility Snapshot           -->
+      <!-- ════════════════════════════════════════ -->
+      <div class="section-label">
+        <span class="section-title">Section 1 — Facility Snapshot</span>
+        <span class="section-desc">A few basics about your location.</span>
+      </div>
+
+      <!-- Q1 -->
+      <div class="question-card" data-q="1">
+        <div class="question-number">Question 1</div>
+        <div class="question-text">How many members are on this location's roster?</div>
+        <div class="question-helper">Include all current members regardless of visit frequency — active, on-hold, or recently joined. Exclude lapsed or cancelled memberships.</div>
+        <div class="options-list" data-name="q1" data-type="radio">
+          <label class="option-item">
+            <input type="radio" name="q1" value="under-1500" />
+            <span class="option-indicator"></span>
+            <span class="option-label">Under 1,500</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q1" value="1500-2999" />
+            <span class="option-indicator"></span>
+            <span class="option-label">1,500–2,999</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q1" value="3000-4999" />
+            <span class="option-indicator"></span>
+            <span class="option-label">3,000–4,999</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q1" value="5000-6999" />
+            <span class="option-indicator"></span>
+            <span class="option-label">5,000–6,999</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q1" value="7000-plus" />
+            <span class="option-indicator"></span>
+            <span class="option-label">7,000+</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question-card" data-q="2">
+        <div class="question-number">Question 2</div>
+        <div class="question-text">Approximately how much additional trainer capacity does this location have right now?</div>
+        <div class="question-helper">Capacity = unfilled trainer session slots available in a typical week.</div>
+        <div class="options-list" data-name="q2" data-type="radio">
+          <label class="option-item">
+            <input type="radio" name="q2" value="at-capacity" />
+            <span class="option-indicator"></span>
+            <span class="option-label">0% — we're fully booked, no room for more sessions</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q2" value="25pct-capacity" />
+            <span class="option-indicator"></span>
+            <span class="option-label">~25% capacity available</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q2" value="50pct-capacity" />
+            <span class="option-indicator"></span>
+            <span class="option-label">~50% capacity available</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q2" value="75pct-capacity" />
+            <span class="option-indicator"></span>
+            <span class="option-label">~75% or more capacity available</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question-card" data-q="3">
+        <div class="question-number">Question 3</div>
+        <div class="question-text">Roughly what percentage of your members are currently enrolled in or purchasing personal training?</div>
+        <div class="question-helper">Include members who have purchased a PT session or package in the last 90 days. Exclude members who have only done a complimentary intro session.</div>
+        <div class="options-list" data-name="q3" data-type="radio">
+          <label class="option-item">
+            <input type="radio" name="q3" value="0-5" />
+            <span class="option-indicator"></span>
+            <span class="option-label">0–5%</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q3" value="6-10" />
+            <span class="option-indicator"></span>
+            <span class="option-label">6–10%</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q3" value="11-15" />
+            <span class="option-indicator"></span>
+            <span class="option-label">11–15%</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q3" value="16-25" />
+            <span class="option-indicator"></span>
+            <span class="option-label">16–25%</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q3" value="26-plus" />
+            <span class="option-indicator"></span>
+            <span class="option-label">26% or more</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q3" value="not-sure" />
+            <span class="option-indicator"></span>
+            <span class="option-label">Not sure</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="section-spacer"></div>
+
+      <!-- ════════════════════════════════════════ -->
+      <!-- SECTION 2 — Do You Run Outbound?        -->
+      <!-- ════════════════════════════════════════ -->
+      <div class="section-label">
+        <span class="section-title">Section 2 — Do You Run Outbound PT Campaigns?</span>
+        <span class="section-desc">Your answer here determines which questions you'll see next.</span>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question-card" data-q="4">
+        <div class="question-number">Question 4</div>
+        <div class="question-text">Do you currently run outbound marketing campaigns to drive personal training sales?</div>
+        <div class="question-helper">Outbound = proactive messages (email, text, calls, ads) sent to members — not just responding when members ask at the desk.</div>
+        <div class="options-list" data-name="q4" data-type="radio">
+          <label class="option-item">
+            <input type="radio" name="q4" value="yes" />
+            <span class="option-indicator"></span>
+            <span class="option-label">Yes — we run them consistently</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q4" value="somewhat" />
+            <span class="option-indicator"></span>
+            <span class="option-label">Occasionally — ad hoc, no real system</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q4" value="no" />
+            <span class="option-indicator"></span>
+            <span class="option-label">No — we don't run outbound PT campaigns</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="section-spacer"></div>
+
+      <!-- ════════════════════════════════════════ -->
+      <!-- SECTION 3 — PT Pricing (everyone)       -->
+      <!-- ════════════════════════════════════════ -->
+      <div class="section-label" id="section3-label">
+        <span class="section-title">Section 3 — Your PT Pricing</span>
+        <span class="section-desc">Everyone sees this section.</span>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question-card" data-q="5">
+        <div class="question-number">Question 5</div>
+        <div class="question-text">What does a member typically pay for the first personal training session you'd promote?</div>
+        <div class="options-list" data-name="q5" data-type="radio">
+          <label class="option-item">
+            <input type="radio" name="q5" value="free" />
+            <span class="option-indicator"></span>
+            <span class="option-label">Free</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q5" value="1-25" />
+            <span class="option-indicator"></span>
+            <span class="option-label">$1–$25</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q5" value="26-49" />
+            <span class="option-indicator"></span>
+            <span class="option-label">$26–$49</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q5" value="50-69" />
+            <span class="option-indicator"></span>
+            <span class="option-label">$50–$69</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q5" value="70-99" />
+            <span class="option-indicator"></span>
+            <span class="option-label">$70–$99</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q5" value="100-plus" />
+            <span class="option-indicator"></span>
+            <span class="option-label">$100+</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q5" value="not-sure" />
+            <span class="option-indicator"></span>
+            <span class="option-label">Not sure</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question-card" data-q="6">
+        <div class="question-number">Question 6</div>
+        <div class="question-text">What's the average amount a new buyer pays for their first training package?</div>
+        <div class="question-helper">Use your typical or most common figure, after any discounts applied at point of sale.</div>
+        <div class="options-list" data-name="q6" data-type="radio">
+          <label class="option-item">
+            <input type="radio" name="q6" value="under-300" />
+            <span class="option-indicator"></span>
+            <span class="option-label">Under $300</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q6" value="300-499" />
+            <span class="option-indicator"></span>
+            <span class="option-label">$300–$499</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q6" value="500-799" />
+            <span class="option-indicator"></span>
+            <span class="option-label">$500–$799</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q6" value="800-1199" />
+            <span class="option-indicator"></span>
+            <span class="option-label">$800–$1,199</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q6" value="1200-1999" />
+            <span class="option-indicator"></span>
+            <span class="option-label">$1,200–$1,999</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q6" value="2000-plus" />
+            <span class="option-indicator"></span>
+            <span class="option-label">$2,000+</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q6" value="not-sure" />
+            <span class="option-indicator"></span>
+            <span class="option-label">Not sure</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Q7 (Optional) -->
+      <div class="question-card" data-q="7">
+        <div class="question-number">Question 7</div>
+        <div class="question-optional">Optional</div>
+        <div class="question-text">What's your most commonly sold training package size?</div>
+        <div class="options-list" data-name="q7" data-type="radio">
+          <label class="option-item">
+            <input type="radio" name="q7" value="4" />
+            <span class="option-indicator"></span>
+            <span class="option-label">4 sessions</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q7" value="8" />
+            <span class="option-indicator"></span>
+            <span class="option-label">8 sessions</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q7" value="12" />
+            <span class="option-indicator"></span>
+            <span class="option-label">12 sessions</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q7" value="16" />
+            <span class="option-indicator"></span>
+            <span class="option-label">16 sessions</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q7" value="24-plus" />
+            <span class="option-indicator"></span>
+            <span class="option-label">24+ sessions</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q7" value="not-sure" />
+            <span class="option-indicator"></span>
+            <span class="option-label">Not sure</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="section-spacer"></div>
+
+      <!-- ════════════════════════════════════════════════════════ -->
+      <!-- SECTION 4 — Campaign Activity (Yes/Somewhat only)      -->
+      <!-- ════════════════════════════════════════════════════════ -->
+      <div id="section4-block" class="conditional-section hidden">
+
+        <div class="section-label">
+          <span class="section-title">Section 4 — Outbound Campaigns: Current Activity</span>
+          <span class="section-desc">Only shown if you run outbound PT campaigns.</span>
+        </div>
+
+        <!-- Q8 -->
+        <div class="question-card" data-q="8">
+          <div class="question-number">Question 8</div>
+          <div class="question-text">In a typical month, what percentage of your members receive at least one outbound PT promotion?</div>
+          <div class="options-list" data-name="q8" data-type="radio">
+            <label class="option-item">
+              <input type="radio" name="q8" value="0-5" />
+              <span class="option-indicator"></span>
+              <span class="option-label">0–5%</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q8" value="6-10" />
+              <span class="option-indicator"></span>
+              <span class="option-label">6–10%</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q8" value="11-20" />
+              <span class="option-indicator"></span>
+              <span class="option-label">11–20%</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q8" value="21-35" />
+              <span class="option-indicator"></span>
+              <span class="option-label">21–35%</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q8" value="36-50" />
+              <span class="option-indicator"></span>
+              <span class="option-label">36–50%</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q8" value="more-than-50" />
+              <span class="option-indicator"></span>
+              <span class="option-label">More than 50%</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q8" value="not-sure" />
+              <span class="option-indicator"></span>
+              <span class="option-label">Not sure</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Q9 -->
+        <div class="question-card" data-q="9">
+          <div class="question-number">Question 9</div>
+          <div class="question-text">How many separate outbound PT campaigns do you run per month at this location?</div>
+          <div class="question-helper">One campaign = one push or sequence sent to a defined target list.</div>
+          <div class="options-list" data-name="q9" data-type="radio">
+            <label class="option-item">
+              <input type="radio" name="q9" value="none" />
+              <span class="option-indicator"></span>
+              <span class="option-label">None currently</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q9" value="1" />
+              <span class="option-indicator"></span>
+              <span class="option-label">1</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q9" value="2" />
+              <span class="option-indicator"></span>
+              <span class="option-label">2</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q9" value="3-4" />
+              <span class="option-indicator"></span>
+              <span class="option-label">3–4</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q9" value="5-plus" />
+              <span class="option-indicator"></span>
+              <span class="option-label">5 or more</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q9" value="not-sure" />
+              <span class="option-indicator"></span>
+              <span class="option-label">Not sure</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Q10 (Checkboxes) -->
+        <div class="question-card" data-q="10">
+          <div class="question-number">Question 10</div>
+          <div class="question-text">Which channels do you use for outbound PT promotions?</div>
+          <div class="question-helper">Select all that apply.</div>
+          <div class="options-list" data-name="q10" data-type="checkbox">
+            <label class="option-item">
+              <input type="checkbox" name="q10" value="email" />
+              <span class="option-indicator checkbox-indicator"></span>
+              <span class="option-label">Email</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="q10" value="sms" />
+              <span class="option-indicator checkbox-indicator"></span>
+              <span class="option-label">SMS / Text</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="q10" value="mobile-app" />
+              <span class="option-indicator checkbox-indicator"></span>
+              <span class="option-label">Mobile app (in-app placements)</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="q10" value="digital-signage" />
+              <span class="option-indicator checkbox-indicator"></span>
+              <span class="option-label">Digital signage (in-facility screens)</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="q10" value="equipment-screens" />
+              <span class="option-indicator checkbox-indicator"></span>
+              <span class="option-label">Fitness equipment screens (e.g. cardio screen ads)</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="q10" value="membership-staff" />
+              <span class="option-indicator checkbox-indicator"></span>
+              <span class="option-label">Membership sales staff outreach (calls, texts, emails)</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="q10" value="trainer-outreach" />
+              <span class="option-indicator checkbox-indicator"></span>
+              <span class="option-label">Trainer outreach</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="q10" value="front-desk" />
+              <span class="option-indicator checkbox-indicator"></span>
+              <span class="option-label">Front desk / floor staff</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="q10" value="website" />
+              <span class="option-indicator checkbox-indicator"></span>
+              <span class="option-label">Your own website</span>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="q10" value="paid-ads" />
+              <span class="option-indicator checkbox-indicator"></span>
+              <span class="option-label">Paid digital ads (Google, Facebook/Instagram, etc.)</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Q11 -->
+        <div class="question-card" data-q="11">
+          <div class="question-number">Question 11</div>
+          <div class="question-text">When running outbound PT campaigns, do you exclude members who are already active in personal training?</div>
+          <div class="options-list" data-name="q11" data-type="radio">
+            <label class="option-item">
+              <input type="radio" name="q11" value="always" />
+              <span class="option-indicator"></span>
+              <span class="option-label">Always — we exclude current PT clients from new-start campaigns</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q11" value="sometimes" />
+              <span class="option-indicator"></span>
+              <span class="option-label">Sometimes — depends on whether it's a renewal, upsell, or new-start message</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q11" value="never" />
+              <span class="option-indicator"></span>
+              <span class="option-label">Never — we send to everyone</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q11" value="not-sure" />
+              <span class="option-indicator"></span>
+              <span class="option-label">Not sure</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="section-spacer"></div>
+
+        <!-- ════════════════════════════════════════════════════════ -->
+        <!-- SECTION 5 — Campaign Performance (Yes/Somewhat only)   -->
+        <!-- ════════════════════════════════════════════════════════ -->
+        <div class="section-label">
+          <span class="section-title">Section 5 — Campaign Performance &amp; Revenue</span>
+          <span class="section-desc">Only shown if you run outbound PT campaigns.</span>
+        </div>
+
+        <!-- Q12 -->
+        <div class="question-card" data-q="12">
+          <div class="question-number">Question 12</div>
+          <div class="question-text">When you run a targeted PT campaign, how many members out of every 1,000 contacted do you think book and pay for a first PT session?</div>
+          <div class="options-list" data-name="q12" data-type="radio">
+            <label class="option-item">
+              <input type="radio" name="q12" value="0-1" />
+              <span class="option-indicator"></span>
+              <span class="option-label">0–1</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q12" value="2-3" />
+              <span class="option-indicator"></span>
+              <span class="option-label">2–3</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q12" value="4-6" />
+              <span class="option-indicator"></span>
+              <span class="option-label">4–6</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q12" value="7-10" />
+              <span class="option-indicator"></span>
+              <span class="option-label">7–10</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q12" value="11-plus" />
+              <span class="option-indicator"></span>
+              <span class="option-label">11 or more</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q12" value="dont-know" />
+              <span class="option-indicator"></span>
+              <span class="option-label">I don't know</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Q13 -->
+        <div class="question-card" data-q="13">
+          <div class="question-number">Question 13</div>
+          <div class="question-text">Without any outbound campaign running, how many first PT sessions do you expect to be sold on their own in a 30-day window?</div>
+          <div class="options-list" data-name="q13" data-type="radio">
+            <label class="option-item">
+              <input type="radio" name="q13" value="0" />
+              <span class="option-indicator"></span>
+              <span class="option-label">0 — none</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q13" value="1-2" />
+              <span class="option-indicator"></span>
+              <span class="option-label">1–2</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q13" value="3-5" />
+              <span class="option-indicator"></span>
+              <span class="option-label">3–5</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q13" value="6-10" />
+              <span class="option-indicator"></span>
+              <span class="option-label">6–10</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q13" value="more-than-10" />
+              <span class="option-indicator"></span>
+              <span class="option-label">More than 10</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q13" value="dont-know" />
+              <span class="option-indicator"></span>
+              <span class="option-label">I don't know</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Q14 -->
+        <div class="question-card" data-q="14">
+          <div class="question-number">Question 14</div>
+          <div class="question-text">Does the likelihood of a member buying a package increase the more PT sessions they do before making a decision?</div>
+          <div class="options-list" data-name="q14" data-type="radio" id="q14-options">
+            <label class="option-item">
+              <input type="radio" name="q14" value="yes" />
+              <span class="option-indicator"></span>
+              <span class="option-label">Yes — more sessions before the ask means a higher close rate</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q14" value="no" />
+              <span class="option-indicator"></span>
+              <span class="option-label">No — it's roughly the same regardless of how many sessions they've done</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q14" value="dont-track" />
+              <span class="option-indicator"></span>
+              <span class="option-label">We don't track this</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Q15 (conditional on Q14 = yes) -->
+        <div class="question-card" data-q="15" id="q15-block" style="display:none;">
+          <div class="question-number">Question 15</div>
+          <div class="question-text">If yes — what's your best guess for the package close rate at each point?</div>
+          <div class="grid-question">
+            <!-- Desktop table -->
+            <table class="grid-table" id="q15-table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>&lt;10%</th>
+                  <th>10–20%</th>
+                  <th>21–35%</th>
+                  <th>36–50%</th>
+                  <th>50%+</th>
+                  <th>Not sure</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>After 1st session</td>
+                  <td><span class="grid-radio" data-row="0" data-col="0"></span></td>
+                  <td><span class="grid-radio" data-row="0" data-col="1"></span></td>
+                  <td><span class="grid-radio" data-row="0" data-col="2"></span></td>
+                  <td><span class="grid-radio" data-row="0" data-col="3"></span></td>
+                  <td><span class="grid-radio" data-row="0" data-col="4"></span></td>
+                  <td><span class="grid-radio" data-row="0" data-col="5"></span></td>
+                </tr>
+                <tr>
+                  <td>After 2nd session</td>
+                  <td><span class="grid-radio" data-row="1" data-col="0"></span></td>
+                  <td><span class="grid-radio" data-row="1" data-col="1"></span></td>
+                  <td><span class="grid-radio" data-row="1" data-col="2"></span></td>
+                  <td><span class="grid-radio" data-row="1" data-col="3"></span></td>
+                  <td><span class="grid-radio" data-row="1" data-col="4"></span></td>
+                  <td><span class="grid-radio" data-row="1" data-col="5"></span></td>
+                </tr>
+                <tr>
+                  <td>After 3rd session</td>
+                  <td><span class="grid-radio" data-row="2" data-col="0"></span></td>
+                  <td><span class="grid-radio" data-row="2" data-col="1"></span></td>
+                  <td><span class="grid-radio" data-row="2" data-col="2"></span></td>
+                  <td><span class="grid-radio" data-row="2" data-col="3"></span></td>
+                  <td><span class="grid-radio" data-row="2" data-col="4"></span></td>
+                  <td><span class="grid-radio" data-row="2" data-col="5"></span></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- Mobile version -->
+            <div class="grid-mobile">
+              <div class="grid-mobile-row">
+                <div class="grid-row-label">After 1st session</div>
+                <div class="grid-mobile-options" data-grid-row="0">
+                  <div class="grid-mobile-option" data-col="0">&lt;10%</div>
+                  <div class="grid-mobile-option" data-col="1">10–20%</div>
+                  <div class="grid-mobile-option" data-col="2">21–35%</div>
+                  <div class="grid-mobile-option" data-col="3">36–50%</div>
+                  <div class="grid-mobile-option" data-col="4">50%+</div>
+                  <div class="grid-mobile-option" data-col="5">Not sure</div>
+                </div>
+              </div>
+              <div class="grid-mobile-row">
+                <div class="grid-row-label">After 2nd session</div>
+                <div class="grid-mobile-options" data-grid-row="1">
+                  <div class="grid-mobile-option" data-col="0">&lt;10%</div>
+                  <div class="grid-mobile-option" data-col="1">10–20%</div>
+                  <div class="grid-mobile-option" data-col="2">21–35%</div>
+                  <div class="grid-mobile-option" data-col="3">36–50%</div>
+                  <div class="grid-mobile-option" data-col="4">50%+</div>
+                  <div class="grid-mobile-option" data-col="5">Not sure</div>
+                </div>
+              </div>
+              <div class="grid-mobile-row">
+                <div class="grid-row-label">After 3rd session</div>
+                <div class="grid-mobile-options" data-grid-row="2">
+                  <div class="grid-mobile-option" data-col="0">&lt;10%</div>
+                  <div class="grid-mobile-option" data-col="1">10–20%</div>
+                  <div class="grid-mobile-option" data-col="2">21–35%</div>
+                  <div class="grid-mobile-option" data-col="3">36–50%</div>
+                  <div class="grid-mobile-option" data-col="4">50%+</div>
+                  <div class="grid-mobile-option" data-col="5">Not sure</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-spacer"></div>
+      </div><!-- /section4-block -->
+
+      <!-- ════════════════════════════════════════════════════════ -->
+      <!-- SECTION 6 — No Outbound (No only)                      -->
+      <!-- ════════════════════════════════════════════════════════ -->
+      <div id="section6-block" class="conditional-section hidden">
+
+        <div class="section-label">
+          <span class="section-title">Section 6 — No Outbound Campaigns</span>
+          <span class="section-desc">Only shown if you don't currently run outbound PT campaigns.</span>
+        </div>
+
+        <!-- Q16 -->
+        <div class="question-card" data-q="16">
+          <div class="question-number">Question 16</div>
+          <div class="question-text">What's the main reason you don't run outbound PT campaigns today?</div>
+          <div class="options-list" data-name="q16" data-type="radio">
+            <label class="option-item">
+              <input type="radio" name="q16" value="no-capacity" />
+              <span class="option-indicator"></span>
+              <span class="option-label">Not enough trainer capacity — we can't handle more sessions</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q16" value="no-staff-time" />
+              <span class="option-indicator"></span>
+              <span class="option-label">Not enough staff time to plan and run campaigns</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q16" value="no-tools" />
+              <span class="option-indicator"></span>
+              <span class="option-label">We don't have the tools or member data to target people effectively</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q16" value="prefer-ingym" />
+              <span class="option-indicator"></span>
+              <span class="option-label">We prefer in-gym selling — it works well enough for us</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q16" value="brand-compliance" />
+              <span class="option-indicator"></span>
+              <span class="option-label">Brand or compliance restrictions</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q16" value="tried-didnt-work" />
+              <span class="option-indicator"></span>
+              <span class="option-label">We've tried it before and it didn't work</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q16" value="other" />
+              <span class="option-indicator"></span>
+              <span class="option-label">Other reason</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Q17 (removed) -->
+
+        <!-- Q18 -->
+        <div class="question-card" data-q="18">
+          <div class="question-number">Question 17</div>
+          <div class="question-text">Roughly how many first PT sessions do you sell per month today — without any outbound campaigns?</div>
+          <div class="options-list" data-name="q18" data-type="radio">
+            <label class="option-item">
+              <input type="radio" name="q18" value="0" />
+              <span class="option-indicator"></span>
+              <span class="option-label">0</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q18" value="1-2" />
+              <span class="option-indicator"></span>
+              <span class="option-label">1–2</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q18" value="3-5" />
+              <span class="option-indicator"></span>
+              <span class="option-label">3–5</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q18" value="6-10" />
+              <span class="option-indicator"></span>
+              <span class="option-label">6–10</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q18" value="11-20" />
+              <span class="option-indicator"></span>
+              <span class="option-label">11–20</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q18" value="21-plus" />
+              <span class="option-indicator"></span>
+              <span class="option-label">21 or more</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q18" value="dont-know" />
+              <span class="option-indicator"></span>
+              <span class="option-label">Don't know</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Q19 -->
+        <div class="question-card" data-q="19">
+          <div class="question-number">Question 18</div>
+          <div class="question-text">What's the average amount a new buyer pays for their first training package?</div>
+          <div class="options-list" data-name="q19" data-type="radio">
+            <label class="option-item">
+              <input type="radio" name="q19" value="under-300" />
+              <span class="option-indicator"></span>
+              <span class="option-label">Under $300</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q19" value="300-499" />
+              <span class="option-indicator"></span>
+              <span class="option-label">$300–$499</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q19" value="500-799" />
+              <span class="option-indicator"></span>
+              <span class="option-label">$500–$799</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q19" value="800-1199" />
+              <span class="option-indicator"></span>
+              <span class="option-label">$800–$1,199</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q19" value="1200-1999" />
+              <span class="option-indicator"></span>
+              <span class="option-label">$1,200–$1,999</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q19" value="2000-plus" />
+              <span class="option-indicator"></span>
+              <span class="option-label">$2,000+</span>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="q19" value="not-sure" />
+              <span class="option-indicator"></span>
+              <span class="option-label">Not sure</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="section-spacer"></div>
+      </div><!-- /section6-block -->
+
+      <!-- ════════════════════════════════════════ -->
+      <!-- SECTION 7 — What Should We Build Next?  -->
+      <!-- ════════════════════════════════════════ -->
+      <div class="section-label">
+        <span class="section-title">Section 7 — What Should We Build Next?</span>
+        <span class="section-desc">Everyone sees this section.</span>
+      </div>
+
+      <!-- Q20 -->
+      <div class="question-card" data-q="20">
+        <div class="question-number">Question 19</div>
+        <div class="question-text">Which ONE of these revenue areas should we focus on next to drive incremental income at your location?</div>
+        <div class="options-list" data-name="q20" data-type="radio">
+          <label class="option-item">
+            <input type="radio" name="q20" value="classes" />
+            <span class="option-indicator"></span>
+            <span class="option-label">Filling paid classes / small group training</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q20" value="recovery" />
+            <span class="option-indicator"></span>
+            <span class="option-label">Recovery services (massage, stretch, sauna, cryotherapy, red light)</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q20" value="nutrition" />
+            <span class="option-indicator"></span>
+            <span class="option-label">Nutrition coaching</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q20" value="retail" />
+            <span class="option-indicator"></span>
+            <span class="option-label">Retail (supplements, merch, products)</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q20" value="membership-upgrades" />
+            <span class="option-indicator"></span>
+            <span class="option-label">Membership upgrades (premium tier, add-ons)</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q20" value="pilates-yoga" />
+            <span class="option-indicator"></span>
+            <span class="option-label">Pilates / yoga studio / boutique add-on</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q20" value="kids" />
+            <span class="option-indicator"></span>
+            <span class="option-label">Kids / childcare programs</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="q20" value="something-else" />
+            <span class="option-indicator"></span>
+            <span class="option-label">Something else</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="section-spacer"></div>
+
+      <!-- ════════════════════════════════════════ -->
+      <!-- SECTION 8 — Optional Feedback           -->
+      <!-- ════════════════════════════════════════ -->
+      <div class="section-label">
+        <span class="section-title">Section 8 — Optional Feedback</span>
+        <span class="section-desc">Everyone sees this section.</span>
+      </div>
+
+      <!-- Q21 (Optional) -->
+      <div class="question-card" data-q="21">
+        <div class="question-number">Question 20</div>
+        <div class="question-optional">Optional</div>
+        <div class="question-text">Anything that would make this easier to run — or more valuable for your facility?</div>
+        <textarea
+          class="survey-textarea"
+          name="q21"
+          placeholder="Share your thoughts here..."
+          rows="5"
+        ></textarea>
+      </div>
+
+      <!-- SUBMIT -->
+      <button type="button" id="submit-btn">Submit Answers</button>
+
+      <!-- FOOTER -->
+      <div id="survey-footer">
+        <p>Your responses are confidential and used only for LookSphere product and pricing research.</p>
+        <div class="team-sig">— The LookSphere Team</div>
+      </div>
+
+    </div><!-- /survey-form -->
+
+    <!-- THANK YOU MESSAGE -->
+    <div id="thank-you">
+      <h2>Thank you.</h2>
+      <div class="ty-divider"></div>
+      <p>Your answers are in. We'll use them to build smarter campaign tools and a fairer pricing model for facilities like yours. We genuinely appreciate the time.</p>
+      <div class="ty-sig">— The LookSphere Team</div>
+    </div>
+
+  </div><!-- /main -->
+
+  <script>
+    (function () {
+      'use strict';
+
+      // ── STATE ──────────────────────────────────────────────
+      var answers = {};
+      var q15Selections = { 0: null, 1: null, 2: null };
+      var TOTAL_QUESTIONS = 21;
+
+      // ── ELEMENT REFS ───────────────────────────────────────
+      var progressFill = document.getElementById('progress-fill');
+      var progressCounter = document.getElementById('progress-counter');
+      var section4Block = document.getElementById('section4-block');
+      var section6Block = document.getElementById('section6-block');
+      var q15Block = document.getElementById('q15-block');
+      var submitBtn = document.getElementById('submit-btn');
+      var surveyForm = document.getElementById('survey-form');
+      var thankYou = document.getElementById('thank-you');
+
+      // ── HELPER: count answered questions ──────────────────
+      function countAnswered() {
+        var q4Val = answers['q4'];
+        var base = 0;
+        var keys = Object.keys(answers);
+
+        // Q1–Q7 always visible (Q7 optional but still counts if answered)
+        ['q1','q2','q3','q4','q5','q6','q7'].forEach(function(k) {
+          if (answers[k] && (Array.isArray(answers[k]) ? answers[k].length > 0 : answers[k] !== '')) base++;
+        });
+
+        if (q4Val === 'yes' || q4Val === 'somewhat') {
+          // Sections 4 & 5: Q8–Q15
+          ['q8','q9','q10','q11','q12','q13','q14'].forEach(function(k) {
+            if (answers[k] && (Array.isArray(answers[k]) ? answers[k].length > 0 : answers[k] !== '')) base++;
+          });
+          // Q15 counts if Q14 = yes and at least one row selected
+          if (answers['q14'] === 'yes') {
+            var anyQ15 = q15Selections[0] !== null || q15Selections[1] !== null || q15Selections[2] !== null;
+            if (anyQ15) base++;
+          }
+          // Skip Q16–Q19
+        } else if (q4Val === 'no') {
+          // Section 6: Q16–Q19
+          ['q16','q17','q18','q19'].forEach(function(k) {
+            if (answers[k] && answers[k] !== '') base++;
+          });
+          // Skip Q8–Q15
+        }
+
+        // Q20, Q21 always
+        if (answers['q20'] && answers['q20'] !== '') base++;
+        if (answers['q21'] && answers['q21'].trim() !== '') base++;
+
+        return base;
+      }
+
+      function updateProgress() {
+        var answered = countAnswered();
+        var pct = Math.min((answered / TOTAL_QUESTIONS) * 100, 100);
+        progressFill.style.width = pct.toFixed(1) + '%';
+        progressCounter.textContent = answered + ' of ' + TOTAL_QUESTIONS;
+      }
+
+      // ── CONDITIONAL ROUTING ───────────────────────────────
+      function applyRouting() {
+        var q4Val = answers['q4'];
+        if (q4Val === 'yes' || q4Val === 'somewhat') {
+          section4Block.classList.remove('hidden');
+          section6Block.classList.add('hidden');
+        } else if (q4Val === 'no') {
+          section4Block.classList.add('hidden');
+          section6Block.classList.remove('hidden');
+        } else {
+          section4Block.classList.add('hidden');
+          section6Block.classList.add('hidden');
+        }
+      }
+
+      // ── Q14 → Q15 CONDITIONAL ─────────────────────────────
+      function applyQ14Logic() {
+        if (answers['q14'] === 'yes') {
+          q15Block.style.display = '';
+        } else {
+          q15Block.style.display = 'none';
+        }
+      }
+
+      // ── RADIO OPTION CLICK HANDLER ────────────────────────
+      function handleOptionClick(e) {
+        var item = e.currentTarget;
+        var list = item.closest('.options-list');
+        if (!list) return;
+        var name = list.getAttribute('data-name');
+        var type = list.getAttribute('data-type');
+        var input = item.querySelector('input');
+        if (!input) return;
+
+        if (type === 'radio') {
+          // Deselect all in group
+          list.querySelectorAll('.option-item').forEach(function(el) {
+            el.classList.remove('selected');
+            var inp = el.querySelector('input');
+            if (inp) inp.checked = false;
+          });
+          // Select this one
+          item.classList.add('selected');
+          input.checked = true;
+          answers[name] = input.value;
+
+          if (name === 'q4') applyRouting();
+          if (name === 'q14') applyQ14Logic();
+
+        } else if (type === 'checkbox') {
+          input.checked = !input.checked;
+          if (input.checked) {
+            item.classList.add('selected');
+          } else {
+            item.classList.remove('selected');
+          }
+          // Collect all checked values
+          var checked = [];
+          list.querySelectorAll('input[type="checkbox"]:checked').forEach(function(inp) {
+            checked.push(inp.value);
+          });
+          answers[name] = checked;
+        }
+
+        updateProgress();
+      }
+
+      // ── BIND RADIO/CHECKBOX OPTIONS ───────────────────────
+      document.querySelectorAll('.options-list').forEach(function(list) {
+        list.querySelectorAll('.option-item').forEach(function(item) {
+          item.addEventListener('click', handleOptionClick);
+        });
+      });
+
+      // ── TEXTAREA ──────────────────────────────────────────
+      var textarea = document.querySelector('textarea[name="q21"]');
+      if (textarea) {
+        textarea.addEventListener('input', function() {
+          answers['q21'] = textarea.value;
+          updateProgress();
+        });
+      }
+
+      // ── Q15 GRID (desktop) ────────────────────────────────
+      document.querySelectorAll('.grid-radio').forEach(function(cell) {
+        cell.addEventListener('click', function() {
+          var row = parseInt(cell.getAttribute('data-row'));
+          var col = parseInt(cell.getAttribute('data-col'));
+          // Deselect others in same row (desktop)
+          document.querySelectorAll('.grid-radio[data-row="' + row + '"]').forEach(function(c) {
+            c.classList.remove('selected');
+          });
+          // Deselect mobile for same row
+          document.querySelectorAll('[data-grid-row="' + row + '"] .grid-mobile-option').forEach(function(m) {
+            m.classList.remove('selected');
+          });
+          cell.classList.add('selected');
+          q15Selections[row] = col;
+          updateProgress();
+        });
+      });
+
+      // ── Q15 GRID (mobile) ─────────────────────────────────
+      document.querySelectorAll('.grid-mobile-options').forEach(function(group) {
+        var row = parseInt(group.getAttribute('data-grid-row'));
+        group.querySelectorAll('.grid-mobile-option').forEach(function(opt) {
+          opt.addEventListener('click', function() {
+            var col = parseInt(opt.getAttribute('data-col'));
+            // Deselect others in row (mobile)
+            group.querySelectorAll('.grid-mobile-option').forEach(function(m) {
+              m.classList.remove('selected');
+            });
+            // Deselect desktop for same row
+            document.querySelectorAll('.grid-radio[data-row="' + row + '"]').forEach(function(c) {
+              c.classList.remove('selected');
+            });
+            opt.classList.add('selected');
+            // Select matching desktop cell
+            var desktopCell = document.querySelector('.grid-radio[data-row="' + row + '"][data-col="' + col + '"]');
+            if (desktopCell) desktopCell.classList.add('selected');
+            q15Selections[row] = col;
+            updateProgress();
+          });
+        });
+      });
+
+      // ── SUPABASE CONFIG ───────────────────────────────────
+      var SUPABASE_URL = 'https://cbnpoyhihkkssguxjalm.supabase.co';
+      var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNibnBveWhpaGtrc3NndXhqYWxtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI4NDYxMzcsImV4cCI6MjA4ODQyMjEzN30.wKifAuSIO_6IHE7wHez8f7GoND82sIGfJhg0cd_dTk8';
+
+      // ── SUBMIT ────────────────────────────────────────────
+      submitBtn.addEventListener('click', function() {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting…';
+
+        var payload = {
+          q1_member_count:                answers['q1'] || null,
+          q2_trainer_capacity:            answers['q2'] || null,
+          q3_pt_participation:            answers['q3'] || null,
+          q4_runs_campaigns:              answers['q4'] || null,
+          q5_first_session_price:         answers['q5'] || null,
+          q6_avg_package_price:           answers['q6'] || null,
+          q7_package_size:                answers['q7'] || null,
+          q8_pct_members_reached:         answers['q8'] || null,
+          q9_campaigns_per_month:         answers['q9'] || null,
+          q10_outbound_channels:          answers['q10'] || null,
+          q11_excludes_active_pt:         answers['q11'] || null,
+          q12_conversions_per_1000:       answers['q12'] || null,
+          q13_baseline_first_sessions:    answers['q13'] || null,
+          q14_sessions_increase_close:    answers['q14'] || null,
+          q15_grid_responses:             Object.keys(q15Selections).length ? JSON.stringify(q15Selections) : null,
+          q16_no_campaign_reason:         answers['q16'] || null,
+          q17_monthly_sessions_no_campaign: answers['q18'] || null,
+          q19_avg_package_no_campaign:    answers['q19'] || null,
+          q20_next_focus:                 answers['q20'] || null,
+          q21_open_feedback:              answers['q21'] || null
+        };
+
+        fetch(SUPABASE_URL + '/rest/v1/survey_responses_test', {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify(payload)
+        })
+        .then(function(res) {
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          surveyForm.style.display = 'none';
+          thankYou.style.display = 'block';
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          progressFill.style.width = '100%';
+          progressCounter.textContent = '20 of 20';
+        })
+        .catch(function(err) {
+          console.error('Submission error:', err);
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit';
+          alert('Something went wrong submitting your response. Please try again.');
+        });
+      });
+
+      // ── INITIAL STATE ─────────────────────────────────────
+      updateProgress();
+
+    })();
+  </script>
+</body>
+</html>
+
