@@ -1816,9 +1816,9 @@
           q15_grid_responses:             Object.keys(q15Selections).length ? JSON.stringify(q15Selections) : null,
           q16_no_campaign_reason:         answers['q16'] || null,
           q17_monthly_sessions_no_campaign: answers['q18'] || null,
-          q19_avg_package_no_campaign:    answers['q19'] || null,
-          q20_next_focus:                 answers['q20'] || null,
-          q21_open_feedback:              answers['q21'] || null
+          q18_avg_package_no_campaign:    answers['q19'] || null,
+          q19_next_focus:                 answers['q20'] || null,
+          q20_open_feedback:              answers['q21'] || null
         };
 
         fetch(SUPABASE_URL + '/rest/v1/survey_responses_test', {
