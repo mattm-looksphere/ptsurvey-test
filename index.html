@@ -645,7 +645,7 @@
   <!-- TOP BAR -->
   <div id="top-bar">
     <div class="brand">LookSphere</div>
-    <div class="progress-counter" id="progress-counter">0 of 21</div>
+    <div class="progress-counter" id="progress-counter">0 of 20</div>
   </div>
 
   <!-- PROGRESS BAR -->
@@ -1521,48 +1521,7 @@
           </div>
         </div>
 
-        <!-- Q19 (was Q19) -->
-        <div class="question-card" data-q="19">
-          <div class="question-number">Question 19</div>
-          <div class="question-text">What is the average cost of a service package at your facility?</div>
-          <div class="options-list" data-name="q19" data-type="radio">
-            <label class="option-item">
-              <input type="radio" name="q19" value="under-300" />
-              <span class="option-indicator"></span>
-              <span class="option-label">Under $300</span>
-            </label>
-            <label class="option-item">
-              <input type="radio" name="q19" value="300-499" />
-              <span class="option-indicator"></span>
-              <span class="option-label">$300–$499</span>
-            </label>
-            <label class="option-item">
-              <input type="radio" name="q19" value="500-799" />
-              <span class="option-indicator"></span>
-              <span class="option-label">$500–$799</span>
-            </label>
-            <label class="option-item">
-              <input type="radio" name="q19" value="800-1199" />
-              <span class="option-indicator"></span>
-              <span class="option-label">$800–$1,199</span>
-            </label>
-            <label class="option-item">
-              <input type="radio" name="q19" value="1200-1999" />
-              <span class="option-indicator"></span>
-              <span class="option-label">$1,200–$1,999</span>
-            </label>
-            <label class="option-item">
-              <input type="radio" name="q19" value="2000-plus" />
-              <span class="option-indicator"></span>
-              <span class="option-label">$2,000+</span>
-            </label>
-            <label class="option-item">
-              <input type="radio" name="q19" value="not-sure" />
-              <span class="option-indicator"></span>
-              <span class="option-label">Not sure</span>
-            </label>
-          </div>
-        </div>
+        <!-- Q19 removed — duplicates Q7 (package pricing already asked for everyone) -->
 
         <div class="section-spacer"></div>
       </div><!-- /section6-block -->
@@ -1577,7 +1536,7 @@
 
       <!-- Q20 -->
       <div class="question-card" data-q="20">
-        <div class="question-number">Question 20</div>
+        <div class="question-number">Question 19</div>
         <div class="question-text">Which ONE of the following revenue areas represents the biggest opportunity to increase revenue at your location?</div>
         <div class="options-list" data-name="q20" data-type="radio">
           <label class="option-item">
@@ -1635,7 +1594,7 @@
 
       <!-- Q21 (Optional) -->
       <div class="question-card" data-q="21">
-        <div class="question-number">Question 21</div>
+        <div class="question-number">Question 20</div>
         <div class="question-optional">Optional</div>
         <div class="question-text">What's the single biggest challenge your facility faces when it comes to growing revenue from add-on services?</div>
         <textarea
@@ -1674,7 +1633,7 @@
       // ── STATE ──────────────────────────────────────────────
       var answers = {};
       var q15Selections = { 0: null, 1: null, 2: null };
-      var TOTAL_QUESTIONS = 22;
+      var TOTAL_QUESTIONS = 21;
 
       // ── ELEMENT REFS ───────────────────────────────────────
       var progressFill = document.getElementById('progress-fill');
@@ -1710,7 +1669,7 @@
           // Skip Q16–Q19
         } else if (q4Val === 'no') {
           // Section 6: Q16–Q19
-          ['q16','q17','q18','q19'].forEach(function(k) {
+          ['q16','q17','q18'].forEach(function(k) {
             if (answers[k] && answers[k] !== '') base++;
           });
           // Skip Q8–Q15
@@ -1908,7 +1867,6 @@
           q15_grid_responses:             Object.keys(q15Selections).length ? JSON.stringify(q15Selections) : null,
           q16_no_campaign_reason:         answers['q16'] || null,
           q17_monthly_sessions_no_campaign: answers['q18'] || null,
-          q18_avg_package_no_campaign:    answers['q19'] || null,
           q19_next_focus:                 answers['q20'] || null,
           q20_open_feedback:              answers['q21'] || null
         };
@@ -1929,7 +1887,7 @@
           thankYou.style.display = 'block';
           window.scrollTo({ top: 0, behavior: 'smooth' });
           progressFill.style.width = '100%';
-          progressCounter.textContent = '21 of 21';
+          progressCounter.textContent = '20 of 20';
         })
         .catch(function(err) {
           console.error('Submission error:', err);
