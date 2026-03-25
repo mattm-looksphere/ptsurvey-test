@@ -748,6 +748,20 @@
             <span class="option-indicator checkbox-indicator"></span>
             <span class="option-label">Memberships only (no add-on services)</span>
           </label>
+          <label class="option-item">
+            <input type="checkbox" name="q0" value="other" />
+            <span class="option-indicator checkbox-indicator"></span>
+            <span class="option-label">Other</span>
+          </label>
+          <div id="q0-other-input" style="display:none; margin-top:8px; padding-left:32px;">
+            <input
+              type="text"
+              id="q0-other-text"
+              placeholder="Please describe your service..."
+              style="width:100%; max-width:400px; padding:8px 12px; border:1px solid #454545;
+                     background:#1a1a1a; color:#fff; border-radius:4px; font-size:14px;"
+            />
+          </div>
         </div>
       </div>
 
@@ -1790,6 +1804,17 @@
         });
       });
 
+      // ── Q0 "OTHER" SHOW/HIDE ──────────────────────────────
+      document.querySelectorAll('input[name="q0"]').forEach(function(cb) {
+        cb.addEventListener('change', function() {
+          var otherChecked = document.querySelector('input[name="q0"][value="other"]').checked;
+          document.getElementById('q0-other-input').style.display = otherChecked ? 'block' : 'none';
+          if (!otherChecked) {
+            document.getElementById('q0-other-text').value = '';
+          }
+        });
+      });
+
       // ── TEXTAREA ──────────────────────────────────────────
       var textarea = document.querySelector('textarea[name="q21"]');
       if (textarea) {
@@ -1851,8 +1876,21 @@
         submitBtn.disabled = true;
         submitBtn.textContent = 'Submitting…';
 
+        // Build q0 with Other text merged in
+        var q0Values = Array.from(
+          document.querySelectorAll('input[name="q0"]:checked')
+        ).map(function(cb) {
+          if (cb.value === 'other') {
+            var otherText = document.getElementById('q0-other-text').value.trim();
+            return otherText ? 'Other: ' + otherText : 'Other';
+          }
+          return cb.value;
+        });
+        var q0OtherText = document.getElementById('q0-other-text').value.trim() || null;
+
         var payload = {
-          q0_services_offered:            answers['q0'] ? JSON.stringify(answers['q0']) : null,
+          q0_services_offered:            q0Values.length ? JSON.stringify(q0Values) : null,
+          q0_services_other:              q0OtherText,
           q1_member_count:                answers['q1'] || null,
           q2_trainer_capacity:            answers['q2'] || null,
           q3_pt_participation:            answers['q3'] || null,
