@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" href="/favicon.png" />
-  <title>[TEST] PT Campaign Research · LookSphere</title>
+  <title>[TEST] Service Revenue Research · LookSphere</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital@1&family=Inter:wght@300;400;500&family=Raleway:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
@@ -645,7 +645,7 @@
   <!-- TOP BAR -->
   <div id="top-bar">
     <div class="brand">LookSphere</div>
-    <div class="progress-counter" id="progress-counter">0 of 20</div>
+    <div class="progress-counter" id="progress-counter">0 of 21</div>
   </div>
 
   <!-- PROGRESS BAR -->
@@ -655,8 +655,8 @@
 
   <!-- HERO -->
   <div id="hero">
-    <h1>Market Research — PT Campaign Economics</h1>
-    <p>Share what you know — no calculations needed. Your answers directly shape how LookSphere models campaign ROI and builds tools for facilities like yours.</p>
+    <h1>Market Research — Service Revenue Research</h1>
+    <p>Share what you know — no calculations needed. Your answers directly shape how LookSphere models service revenue and builds tools for facilities like yours.</p>
   </div>
 
   <!-- MAIN SURVEY CONTENT -->
@@ -672,20 +672,24 @@
             <dd>One promo push or sequence sent to a defined group of members via any channel.</dd>
           </div>
           <div>
-            <dt>Outbound Marketing</dt>
-            <dd>Proactive promotions or messages designed to generate PT demand — not just conversations when members walk up and ask.</dd>
+            <dt>Add-on Service</dt>
+            <dd>Any revenue-generating service beyond the base membership — personal training, group classes, recovery, nutrition coaching, etc.</dd>
           </div>
           <div>
-            <dt>First PT Session</dt>
-            <dd>The paid or free first personal training session used to start a new member on PT.</dd>
+            <dt>Outbound Marketing</dt>
+            <dd>Proactive promotions or messages designed to generate add-on service demand — not just conversations when members walk up and ask.</dd>
+          </div>
+          <div>
+            <dt>Introductory Session</dt>
+            <dd>The paid or free first session used to start a new member on an add-on service.</dd>
           </div>
           <div>
             <dt>Found First-Session Revenue</dt>
-            <dd>In a normal month without a campaign, maybe 3 members sign up for their first PT session. You run a campaign and 8 members sign up. The 5 extra sign-ups? That's your Found First-Session Revenue — the money your campaign actually created.</dd>
+            <dd>In a normal month without a campaign, maybe 3 members sign up for their first session. You run a campaign and 8 members sign up. The 5 extra sign-ups? That's your Found First-Session Revenue — the money your campaign actually created.</dd>
           </div>
           <div>
             <dt>Package Revenue</dt>
-            <dd>Training package dollars collected from members who bought a package after a campaign-driven first PT session (typically within 30 days).</dd>
+            <dd>Service package dollars collected from members who bought a package after a campaign-driven introductory session (typically within 30 days).</dd>
           </div>
         </dl>
       </div>
@@ -698,9 +702,58 @@
         <span class="section-desc">A few basics about your location.</span>
       </div>
 
-      <!-- Q1 -->
-      <div class="question-card" data-q="1">
+      <!-- Q1 (NEW — Services Offered) -->
+      <div class="question-card" data-q="0">
         <div class="question-number">Question 1</div>
+        <div class="question-text">Which of the following services does your facility offer? (Select all that apply)</div>
+        <div class="question-helper">First, tell us about your facility.</div>
+        <div class="options-list" data-name="q0" data-type="checkbox">
+          <label class="option-item">
+            <input type="checkbox" name="q0" value="personal-training" />
+            <span class="option-indicator checkbox-indicator"></span>
+            <span class="option-label">Personal Training</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="q0" value="group-fitness" />
+            <span class="option-indicator checkbox-indicator"></span>
+            <span class="option-label">Group Fitness / Classes</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="q0" value="recovery-wellness" />
+            <span class="option-indicator checkbox-indicator"></span>
+            <span class="option-label">Recovery &amp; Wellness (sauna, cryo, massage, etc.)</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="q0" value="nutrition-coaching" />
+            <span class="option-indicator checkbox-indicator"></span>
+            <span class="option-label">Nutrition Coaching</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="q0" value="boutique-specialty" />
+            <span class="option-indicator checkbox-indicator"></span>
+            <span class="option-label">Boutique / Specialty Programming (yoga, Pilates, martial arts, etc.)</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="q0" value="childcare-kids" />
+            <span class="option-indicator checkbox-indicator"></span>
+            <span class="option-label">Childcare / Kids Programs</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="q0" value="retail-proshop" />
+            <span class="option-indicator checkbox-indicator"></span>
+            <span class="option-label">Retail / Pro Shop</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="q0" value="memberships-only" />
+            <span class="option-indicator checkbox-indicator"></span>
+            <span class="option-label">Memberships only (no add-on services)</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Q2 (was Q1) -->
+      <div class="question-card" data-q="1">
+        <div class="question-number">Question 2</div>
         <div class="question-text">How many members are on this location's roster?</div>
         <div class="question-helper">Include all current members regardless of visit frequency — active, on-hold, or recently joined. Exclude lapsed or cancelled memberships.</div>
         <div class="options-list" data-name="q1" data-type="radio">
@@ -732,11 +785,11 @@
         </div>
       </div>
 
-      <!-- Q2 -->
+      <!-- Q3 (was Q2) -->
       <div class="question-card" data-q="2">
-        <div class="question-number">Question 2</div>
-        <div class="question-text">Approximately how much additional trainer capacity does this location have right now?</div>
-        <div class="question-helper">Capacity = unfilled trainer session slots available in a typical week.</div>
+        <div class="question-number">Question 3</div>
+        <div class="question-text">How many staff members deliver your primary add-on service(s)?</div>
+        <div class="question-helper">Capacity = unfilled session slots available in a typical week.</div>
         <div class="options-list" data-name="q2" data-type="radio">
           <label class="option-item">
             <input type="radio" name="q2" value="at-capacity" />
@@ -761,11 +814,11 @@
         </div>
       </div>
 
-      <!-- Q3 -->
+      <!-- Q4 (was Q3) -->
       <div class="question-card" data-q="3">
-        <div class="question-number">Question 3</div>
-        <div class="question-text">Roughly what percentage of your members are currently enrolled in or purchasing personal training?</div>
-        <div class="question-helper">Include members who have purchased a PT session or package in the last 90 days. Exclude members who have only done a complimentary intro session.</div>
+        <div class="question-number">Question 4</div>
+        <div class="question-text">What percentage of your members currently purchase at least one add-on service?</div>
+        <div class="question-helper">Include members who have purchased a service session or package in the last 90 days. Exclude members who have only done a complimentary intro session.</div>
         <div class="options-list" data-name="q3" data-type="radio">
           <label class="option-item">
             <input type="radio" name="q3" value="0-5" />
@@ -806,14 +859,14 @@
       <!-- SECTION 2 — Do You Run Outbound?        -->
       <!-- ════════════════════════════════════════ -->
       <div class="section-label">
-        <span class="section-title">Section 2 — Do You Run Outbound PT Campaigns?</span>
+        <span class="section-title">Section 2 — Do You Run Outbound Campaigns for Add-on Services?</span>
         <span class="section-desc">Your answer here determines which questions you'll see next.</span>
       </div>
 
-      <!-- Q4 -->
+      <!-- Q5 (was Q4) -->
       <div class="question-card" data-q="4">
-        <div class="question-number">Question 4</div>
-        <div class="question-text">Do you currently run outbound marketing campaigns to drive personal training sales?</div>
+        <div class="question-number">Question 5</div>
+        <div class="question-text">Does your facility run proactive campaigns to promote your add-on services?</div>
         <div class="question-helper">Outbound = proactive messages (email, text, calls, ads) sent to members — not just responding when members ask at the desk.</div>
         <div class="options-list" data-name="q4" data-type="radio">
           <label class="option-item">
@@ -829,7 +882,7 @@
           <label class="option-item">
             <input type="radio" name="q4" value="no" />
             <span class="option-indicator"></span>
-            <span class="option-label">No — we don't run outbound PT campaigns</span>
+            <span class="option-label">No — we don't run outbound campaigns for add-on services</span>
           </label>
         </div>
       </div>
@@ -840,14 +893,14 @@
       <!-- SECTION 3 — PT Pricing (everyone)       -->
       <!-- ════════════════════════════════════════ -->
       <div class="section-label" id="section3-label">
-        <span class="section-title">Section 3 — Your PT Pricing</span>
+        <span class="section-title">Section 3 — Your Service Pricing</span>
         <span class="section-desc">Everyone sees this section.</span>
       </div>
 
-      <!-- Q5 -->
+      <!-- Q6 (was Q5) -->
       <div class="question-card" data-q="5">
-        <div class="question-number">Question 5</div>
-        <div class="question-text">What does a member typically pay for the first personal training session you'd promote?</div>
+        <div class="question-number">Question 6</div>
+        <div class="question-text">What do you typically charge for an introductory session for your primary add-on service?</div>
         <div class="options-list" data-name="q5" data-type="radio">
           <label class="option-item">
             <input type="radio" name="q5" value="free" />
@@ -887,10 +940,10 @@
         </div>
       </div>
 
-      <!-- Q6 -->
+      <!-- Q7 (was Q6) -->
       <div class="question-card" data-q="6">
-        <div class="question-number">Question 6</div>
-        <div class="question-text">What's the average amount a new buyer pays for their first training package?</div>
+        <div class="question-number">Question 7</div>
+        <div class="question-text">What is the average cost of a service package at your facility?</div>
         <div class="question-helper">Use your typical or most common figure, after any discounts applied at point of sale.</div>
         <div class="options-list" data-name="q6" data-type="radio">
           <label class="option-item">
@@ -931,11 +984,11 @@
         </div>
       </div>
 
-      <!-- Q7 (Optional) -->
+      <!-- Q8 (was Q7, Optional) -->
       <div class="question-card" data-q="7">
-        <div class="question-number">Question 7</div>
+        <div class="question-number">Question 8</div>
         <div class="question-optional">Optional</div>
-        <div class="question-text">What's your most commonly sold training package size?</div>
+        <div class="question-text">What is the most common package size you sell?</div>
         <div class="options-list" data-name="q7" data-type="radio">
           <label class="option-item">
             <input type="radio" name="q7" value="4" />
@@ -979,13 +1032,13 @@
 
         <div class="section-label">
           <span class="section-title">Section 4 — Outbound Campaigns: Current Activity</span>
-          <span class="section-desc">Only shown if you run outbound PT campaigns.</span>
+          <span class="section-desc">Only shown if you run outbound campaigns for add-on services.</span>
         </div>
 
-        <!-- Q8 -->
+        <!-- Q9 (was Q8) -->
         <div class="question-card" data-q="8">
-          <div class="question-number">Question 8</div>
-          <div class="question-text">In a typical month, what percentage of your members receive at least one outbound PT promotion?</div>
+          <div class="question-number">Question 9</div>
+          <div class="question-text">What percentage of your member base do you actively reach out to about add-on services each month?</div>
           <div class="options-list" data-name="q8" data-type="radio">
             <label class="option-item">
               <input type="radio" name="q8" value="0-5" />
@@ -1025,10 +1078,10 @@
           </div>
         </div>
 
-        <!-- Q9 -->
+        <!-- Q10 (was Q9) -->
         <div class="question-card" data-q="9">
-          <div class="question-number">Question 9</div>
-          <div class="question-text">How many separate outbound PT campaigns do you run per month at this location?</div>
+          <div class="question-number">Question 10</div>
+          <div class="question-text">How often does your facility run promotional campaigns for add-on services?</div>
           <div class="question-helper">One campaign = one push or sequence sent to a defined target list.</div>
           <div class="options-list" data-name="q9" data-type="radio">
             <label class="option-item">
@@ -1064,10 +1117,10 @@
           </div>
         </div>
 
-        <!-- Q10 (Checkboxes) -->
+        <!-- Q11 (was Q10, Checkboxes) -->
         <div class="question-card" data-q="10">
-          <div class="question-number">Question 10</div>
-          <div class="question-text">Which channels do you use for outbound PT promotions?</div>
+          <div class="question-number">Question 11</div>
+          <div class="question-text">Which channels do you use for outbound promotions of add-on services?</div>
           <div class="question-helper">Select all that apply.</div>
           <div class="options-list" data-name="q10" data-type="checkbox">
             <label class="option-item">
@@ -1123,15 +1176,15 @@
           </div>
         </div>
 
-        <!-- Q11 -->
+        <!-- Q12 (was Q11) -->
         <div class="question-card" data-q="11">
-          <div class="question-number">Question 11</div>
-          <div class="question-text">When running outbound PT campaigns, do you exclude members who are already active in personal training?</div>
+          <div class="question-number">Question 12</div>
+          <div class="question-text">Do you re-market services to existing service clients?</div>
           <div class="options-list" data-name="q11" data-type="radio">
             <label class="option-item">
               <input type="radio" name="q11" value="always" />
               <span class="option-indicator"></span>
-              <span class="option-label">Always — we exclude current PT clients from new-start campaigns</span>
+              <span class="option-label">Always — we exclude current service clients from new-start campaigns</span>
             </label>
             <label class="option-item">
               <input type="radio" name="q11" value="sometimes" />
@@ -1158,13 +1211,13 @@
         <!-- ════════════════════════════════════════════════════════ -->
         <div class="section-label">
           <span class="section-title">Section 5 — Campaign Performance &amp; Revenue</span>
-          <span class="section-desc">Only shown if you run outbound PT campaigns.</span>
+          <span class="section-desc">Only shown if you run outbound campaigns for add-on services.</span>
         </div>
 
-        <!-- Q12 -->
+        <!-- Q13 (was Q12) -->
         <div class="question-card" data-q="12">
-          <div class="question-number">Question 12</div>
-          <div class="question-text">When you run a targeted PT campaign, how many members out of every 1,000 contacted do you think book and pay for a first PT session?</div>
+          <div class="question-number">Question 13</div>
+          <div class="question-text">What metrics do you use to measure campaign success for add-on services?</div>
           <div class="options-list" data-name="q12" data-type="radio">
             <label class="option-item">
               <input type="radio" name="q12" value="0-1" />
@@ -1199,10 +1252,10 @@
           </div>
         </div>
 
-        <!-- Q13 -->
+        <!-- Q14 (was Q13) -->
         <div class="question-card" data-q="13">
-          <div class="question-number">Question 13</div>
-          <div class="question-text">Without any outbound campaign running, how many first PT sessions do you expect to be sold on their own in a 30-day window?</div>
+          <div class="question-number">Question 14</div>
+          <div class="question-text">How many introductory service sessions does your facility conduct per month without running campaigns?</div>
           <div class="options-list" data-name="q13" data-type="radio">
             <label class="option-item">
               <input type="radio" name="q13" value="0" />
@@ -1237,15 +1290,15 @@
           </div>
         </div>
 
-        <!-- Q14 -->
+        <!-- Q15 (was Q14) -->
         <div class="question-card" data-q="14">
-          <div class="question-number">Question 14</div>
-          <div class="question-text">Based on your experience, how does the number of PT sessions completed before the ask affect package close rates?</div>
+          <div class="question-number">Question 15</div>
+          <div class="question-text">Does increasing the number of intro sessions a member completes increase their likelihood of purchasing a package?</div>
           <div class="options-list" data-name="q14" data-type="radio" id="q14-options">
             <label class="option-item">
               <input type="radio" name="q14" value="yes" />
               <span class="option-indicator"></span>
-              <span class="option-label">More PT sessions before the ask are associated with higher close rates</span>
+              <span class="option-label">More intro sessions before the ask are associated with higher close rates</span>
             </label>
             <label class="option-item">
               <input type="radio" name="q14" value="no" />
@@ -1265,9 +1318,9 @@
           </div>
         </div>
 
-        <!-- Q15 (conditional on Q14 = yes) -->
+        <!-- Q16 (was Q15, conditional on Q14 = yes) -->
         <div class="question-card" data-q="15" id="q15-block" style="display:none;">
-          <div class="question-number">Question 15</div>
+          <div class="question-number">Question 16</div>
           <div class="question-text">If yes — what's your best guess for the package close rate at each point?</div>
           <div class="grid-question">
             <!-- Desktop table -->
@@ -1363,13 +1416,13 @@
 
         <div class="section-label">
           <span class="section-title">Section 6 — No Outbound Campaigns</span>
-          <span class="section-desc">Only shown if you don't currently run outbound PT campaigns.</span>
+          <span class="section-desc">Only shown if you don't currently run outbound campaigns for add-on services.</span>
         </div>
 
-        <!-- Q16 -->
+        <!-- Q17 (was Q16) -->
         <div class="question-card" data-q="16">
-          <div class="question-number">Question 16</div>
-          <div class="question-text">What's the main reason you don't run outbound PT campaigns today?</div>
+          <div class="question-number">Question 17</div>
+          <div class="question-text">Why doesn't your facility run promotional campaigns for add-on services?</div>
           <div class="options-list" data-name="q16" data-type="radio">
             <label class="option-item">
               <input type="radio" name="q16" value="no-capacity" />
@@ -1411,10 +1464,10 @@
 
         <!-- Q17 (removed) -->
 
-        <!-- Q18 -->
+        <!-- Q18 (was Q18) -->
         <div class="question-card" data-q="18">
-          <div class="question-number">Question 17</div>
-          <div class="question-text">Roughly how many first PT sessions do you sell per month today — without any outbound campaigns?</div>
+          <div class="question-number">Question 18</div>
+          <div class="question-text">How many introductory service sessions does your facility conduct per month without running campaigns?</div>
           <div class="options-list" data-name="q18" data-type="radio">
             <label class="option-item">
               <input type="radio" name="q18" value="0" />
@@ -1454,10 +1507,10 @@
           </div>
         </div>
 
-        <!-- Q19 -->
+        <!-- Q19 (was Q19) -->
         <div class="question-card" data-q="19">
-          <div class="question-number">Question 18</div>
-          <div class="question-text">What's the average amount a new buyer pays for their first training package?</div>
+          <div class="question-number">Question 19</div>
+          <div class="question-text">What is the average cost of a service package at your facility?</div>
           <div class="options-list" data-name="q19" data-type="radio">
             <label class="option-item">
               <input type="radio" name="q19" value="under-300" />
@@ -1510,7 +1563,7 @@
 
       <!-- Q20 -->
       <div class="question-card" data-q="20">
-        <div class="question-number">Question 19</div>
+        <div class="question-number">Question 20</div>
         <div class="question-text">Which ONE of the following revenue areas represents the biggest opportunity to increase revenue at your location?</div>
         <div class="options-list" data-name="q20" data-type="radio">
           <label class="option-item">
@@ -1568,9 +1621,9 @@
 
       <!-- Q21 (Optional) -->
       <div class="question-card" data-q="21">
-        <div class="question-number">Question 20</div>
+        <div class="question-number">Question 21</div>
         <div class="question-optional">Optional</div>
-        <div class="question-text">Anything that would make this easier to run — or more valuable for your facility?</div>
+        <div class="question-text">What's the single biggest challenge your facility faces when it comes to growing revenue from add-on services?</div>
         <textarea
           class="survey-textarea"
           name="q21"
@@ -1607,7 +1660,7 @@
       // ── STATE ──────────────────────────────────────────────
       var answers = {};
       var q15Selections = { 0: null, 1: null, 2: null };
-      var TOTAL_QUESTIONS = 21;
+      var TOTAL_QUESTIONS = 22;
 
       // ── ELEMENT REFS ───────────────────────────────────────
       var progressFill = document.getElementById('progress-fill');
@@ -1625,8 +1678,8 @@
         var base = 0;
         var keys = Object.keys(answers);
 
-        // Q1–Q7 always visible (Q7 optional but still counts if answered)
-        ['q1','q2','q3','q4','q5','q6','q7'].forEach(function(k) {
+        // Q0–Q7 always visible (Q0 = services offered, Q7 optional but still counts if answered)
+        ['q0','q1','q2','q3','q4','q5','q6','q7'].forEach(function(k) {
           if (answers[k] && (Array.isArray(answers[k]) ? answers[k].length > 0 : answers[k] !== '')) base++;
         });
 
@@ -1799,6 +1852,7 @@
         submitBtn.textContent = 'Submitting…';
 
         var payload = {
+          q0_services_offered:            answers['q0'] ? JSON.stringify(answers['q0']) : null,
           q1_member_count:                answers['q1'] || null,
           q2_trainer_capacity:            answers['q2'] || null,
           q3_pt_participation:            answers['q3'] || null,
@@ -1837,7 +1891,7 @@
           thankYou.style.display = 'block';
           window.scrollTo({ top: 0, behavior: 'smooth' });
           progressFill.style.width = '100%';
-          progressCounter.textContent = '20 of 20';
+          progressCounter.textContent = '21 of 21';
         })
         .catch(function(err) {
           console.error('Submission error:', err);
